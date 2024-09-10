@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recycler);
         usersArrayList=new ArrayList<>();
-        userAdapter=new UserAdapter(usersArrayList,this);
+        userAdapter=new UserAdapter(this,usersArrayList);
+        recyclerView.setAdapter(userAdapter);
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
