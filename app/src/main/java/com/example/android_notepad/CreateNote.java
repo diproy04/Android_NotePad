@@ -48,8 +48,8 @@ public class CreateNote extends com.example.android_notepad.until.nightmode {
                     snapshot.getRef().setValue(new Users(tittle.getText().toString(),note.getText().toString()));
                     tittle.setText("");
                     note.setText("");
-                    startActivity(new Intent(CreateNote.this,MainActivity.class));
-                    Toast.makeText(CreateNote.this, "Note Created Successfull", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(CreateNote.this,MainActivity.class));
+                    Toast.makeText(CreateNote.this, "Note Added Successfull", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
-
+    tools:context=".UpdateandView">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -26,10 +25,10 @@
 
 
             <EditText
-                android:id="@+id/tittle"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Enter your note tittle here"
+                android:hint="Enter your note title here"
                 android:paddingTop="12dp"
                 android:textColorHint="@color/grey"
                 android:textSize="22sp"
@@ -38,12 +37,12 @@
         </androidx.appcompat.widget.Toolbar>
 
         <EditText
-            android:id="@+id/note"
+            android:id="@+id/notee"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape"
             android:gravity="top|left"
-            android:hint="Enter your note cotent  here"
+            android:hint="Enter your note content  here"
             android:padding="15dp"
             android:textColorHint="@color/grey"
             android:textSize="22sp">
@@ -52,4 +51,5 @@
         </EditText>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

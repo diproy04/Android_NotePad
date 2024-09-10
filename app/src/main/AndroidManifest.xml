@@ -16,7 +16,10 @@
         android:theme="@style/Theme.Android_NotePad"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".UpdateandView"
+            android:exported="false" />
+        <activity
+            android:name=".Updateandview"
             android:exported="false" />
         <activity
             android:name=".CreateNote"

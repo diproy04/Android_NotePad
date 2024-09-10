@@ -10,12 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android_notepad.MainActivity;
-import com.example.android_notepad.MainActivity2;
 import com.example.android_notepad.Model.Users;
 import com.example.android_notepad.R;
+import com.example.android_notepad.UpdateandView;
 
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVierHolder> {
@@ -40,7 +38,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVierHolder
         holder.note.setText(usersArrayList.get(position).getNote());
 
         holder.itemView.setOnClickListener(view ->{
-            Intent i=new Intent(context, MainActivity2.class);
+            Intent i=new Intent(context, UpdateandView.class);
+            i.putExtra("tittle",usersArrayList.get(position).getTittle());
+            i.putExtra("note",usersArrayList.get(position).getNote());
             context.startActivity(i);
         });
     }
