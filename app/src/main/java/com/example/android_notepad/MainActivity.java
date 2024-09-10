@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_notepad.Adapter.UserAdapter;
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         userAdapter=new UserAdapter(this,usersArrayList);
         recyclerView.setAdapter(userAdapter);
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

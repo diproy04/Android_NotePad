@@ -1,6 +1,7 @@
 package com.example.android_notepad.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_notepad.MainActivity;
+import com.example.android_notepad.MainActivity2;
 import com.example.android_notepad.Model.Users;
 import com.example.android_notepad.R;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVierHolder> {
@@ -35,6 +38,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVierHolder
     public void onBindViewHolder(@NonNull UserAdapter.UserVierHolder holder, int position) {
         holder.tittle.setText(usersArrayList.get(position).getTittle());
         holder.note.setText(usersArrayList.get(position).getNote());
+
+        holder.itemView.setOnClickListener(view ->{
+            Intent i=new Intent(context, MainActivity2.class);
+            context.startActivity(i);
+        });
     }
 
     @Override

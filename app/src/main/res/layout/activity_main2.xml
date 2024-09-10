@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateNote">
+    tools:context=".MainActivity2">
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -51,20 +52,4 @@
         </EditText>
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="80dp"
-        android:background="@color/black"
-        android:src="@drawable/baseline_save_alt_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="70dp">
-
-
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
