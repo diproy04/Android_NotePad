@@ -61,7 +61,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/sarchbar"
+        android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -74,13 +74,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
 
     <ImageView
-        android:id="@+id/sarch"
+        android:id="@+id/search"
         android:layout_width="58dp"
         android:layout_height="48dp"
         android:src="@drawable/search"
-        app:layout_constraintBottom_toBottomOf="@+id/sarchbar"
+        app:layout_constraintBottom_toBottomOf="@+id/searchbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sarchbar"
+        app:layout_constraintTop_toTopOf="@+id/searchbar"
         app:layout_constraintVertical_bias="0.416" />
 
 
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sarchbar"
+        app:layout_constraintTop_toBottomOf="@+id/searchbar"
         app:layout_constraintVertical_bias="1.0">
 
     </androidx.recyclerview.widget.RecyclerView>

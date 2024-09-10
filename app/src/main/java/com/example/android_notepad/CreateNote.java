@@ -3,6 +3,8 @@ package com.example.android_notepad;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,10 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 public class CreateNote extends com.example.android_notepad.until.nightmode {
 
     EditText tittle,note;
+    ImageView backs;
+    TextView backt;
 
     FloatingActionButton save;
 
     DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class CreateNote extends com.example.android_notepad.until.nightmode {
         tittle=findViewById(R.id.tittle);
         note=findViewById(R.id.note);
         save=findViewById(R.id.save);
+        backs=findViewById(R.id.backs);
+        backt=findViewById(R.id.backt);
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
@@ -59,6 +66,12 @@ public class CreateNote extends com.example.android_notepad.until.nightmode {
             });
         });
 
+        backs.setOnClickListener(view ->{
+            startActivity(new Intent(CreateNote.this,MainActivity.class));
+        });
+        backt.setOnClickListener(view ->{
+            startActivity(new Intent(CreateNote.this,MainActivity.class));
+        });
 
     }
 }
