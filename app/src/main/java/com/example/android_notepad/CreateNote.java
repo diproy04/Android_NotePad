@@ -49,21 +49,26 @@ public class CreateNote extends com.example.android_notepad.until.nightmode {
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
         save.setOnClickListener(view ->{
-            databaseReference.child(databaseReference.push().getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    snapshot.getRef().setValue(new Users(tittle.getText().toString(),note.getText().toString()));
-                    tittle.setText("");
-                    note.setText("");
+            if(tittle.getText().toString().isEmpty() || note.getText().toString().isEmpty()){
+                Toast.makeText(this, "Title and Note cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                databaseReference.child(databaseReference.push().getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        snapshot.getRef().setValue(new Users(tittle.getText().toString(),note.getText().toString()));
+                        tittle.setText("");
+                        note.setText("");
 //                    startActivity(new Intent(CreateNote.this,MainActivity.class));
-                    Toast.makeText(CreateNote.this, "Note Added Successfull", Toast.LENGTH_SHORT).show();
-                }
+                        Toast.makeText(CreateNote.this, "Added Successfull", Toast.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(CreateNote.this, "Note Created Failed", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(CreateNote.this, "Created Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
 
         backs.setOnClickListener(view ->{

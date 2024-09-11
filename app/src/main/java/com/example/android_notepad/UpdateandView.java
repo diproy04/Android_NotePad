@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,7 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 public class UpdateandView extends com.example.android_notepad.until.nightmode {
 
     EditText title,notee;
-    ImageView delete;
+    ImageView delete,backs;
+    TextView update,back;
 
     DatabaseReference databaseReference;
 
@@ -41,6 +43,9 @@ public class UpdateandView extends com.example.android_notepad.until.nightmode {
         title=findViewById(R.id.title);
         notee=findViewById(R.id.notee);
         delete=findViewById(R.id.delete);
+        update=findViewById(R.id.update);
+        backs=findViewById(R.id.backs);
+        back=findViewById(R.id.back);
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
 
@@ -75,6 +80,40 @@ public class UpdateandView extends com.example.android_notepad.until.nightmode {
 
                 }
             });
+        });
+        update.setOnClickListener(view ->{
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean check = false;
+                    for (DataSnapshot x:snapshot.getChildren()) {
+                        Users user=x.getValue(Users.class);
+                        if (user != null && user.getNote().equals(notee.getText().toString())) {
+                            Users updatedUser = new Users(title.getText().toString(), notee.getText().toString());
+                            x.getRef().setValue(updatedUser);
+                            check = true;
+                        }
+                    }
+                    if (check) {
+                        Toast.makeText(UpdateandView.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(UpdateandView.this, MainActivity.class));
+
+                    } else {
+                        Toast.makeText(UpdateandView.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        });
+        backs.setOnClickListener(view ->{
+            startActivity(new Intent(UpdateandView.this,MainActivity.class));
+        });
+        back.setOnClickListener(view ->{
+            startActivity(new Intent(UpdateandView.this,MainActivity.class));
         });
     }
 }

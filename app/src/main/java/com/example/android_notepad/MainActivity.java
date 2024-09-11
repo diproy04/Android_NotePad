@@ -3,6 +3,8 @@ package com.example.android_notepad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -28,6 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ImageView search;
+    EditText searchbar;
+
     Switch darkmode;
     FloatingActionButton addbutton;
     boolean nightmode;
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<Users> usersArrayList;
+    ArrayList<Users> fullUsersList;
     UserAdapter userAdapter;
     DatabaseReference databaseReference;
 
@@ -46,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        searchbar=findViewById(R.id.searchbar);
+        search=findViewById(R.id.search);
         addbutton=findViewById(R.id.add);
         darkmode=findViewById(R.id.darkmode);
         sharedPreferences=getSharedPreferences(getString(R.string.app_name),MODE_PRIVATE);
@@ -54,9 +62,59 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recycler);
         usersArrayList=new ArrayList<>();
+        fullUsersList = new ArrayList<>();
         userAdapter=new UserAdapter(this,usersArrayList);
         recyclerView.setAdapter(userAdapter);
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+
+        search.setOnClickListener(view ->{
+            String searchT=searchbar.getText().toString().trim();
+
+            if (searchT.isEmpty()) {
+                usersArrayList.clear();
+                usersArrayList.addAll(fullUsersList);
+                userAdapter.notifyDataSetChanged();
+                return;
+            }
+
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    usersArrayList.clear();
+                    boolean check = false;
+                    for (DataSnapshot x : snapshot.getChildren()) {
+                        Users user = x.getValue(Users.class);
+
+                        if (user.getTittle().equalsIgnoreCase(searchbar.getText().toString())) {
+                            check = true;
+                            usersArrayList.add(user);
+                        }
+                    }
+                    userAdapter.notifyDataSetChanged();
+
+                    if (!check) {
+                        usersArrayList.clear();
+                        usersArrayList.addAll(fullUsersList);
+                        Toast.makeText(MainActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -64,9 +122,14 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usersArrayList.clear();
+                fullUsersList.clear();
                 for(DataSnapshot x:snapshot.getChildren()){
                     Users users=x.getValue(Users.class);
-                    usersArrayList.add(users);
+                    if (users != null) {
+                        usersArrayList.add(users);
+                        fullUsersList.add(users);
+                    }
                 }
                 userAdapter.notifyDataSetChanged();
             }

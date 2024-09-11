@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:layout_marginEnd="270dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
             android:id="@+id/backs"
             android:layout_width="50dp"
             android:layout_marginTop="3dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:paddingLeft="13dp"
             android:src="@drawable/back" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="Back"
-            android:textSize="30dp"
+            android:textSize="22dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -48,9 +48,9 @@
         <ImageView
             android:id="@+id/delete"
             android:layout_width="45dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="6dp"
             android:src="@drawable/delete" />
 
@@ -61,7 +61,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginRight="20dp"
             android:text="Save"
-            android:textSize="30dp"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
